@@ -54,12 +54,17 @@ export const updateNoteApi = async (noteId, updatedNote) => {
     });
 
     if (!response.ok) {
+      console.error('Failed to update note. Response status:', response.status);
+      const errorMessage = await response.text();
+      console.error('Error message from server:', errorMessage);
       throw new Error('Failed to update note');
     }
   } catch (error) {
+    console.error('Error updating note:', error.message);
     throw new Error(`Error updating note: ${error.message}`);
   }
 };
+
 
 
 

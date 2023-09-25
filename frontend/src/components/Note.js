@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { createNoteApi, fetchAllNotesApi, updateNoteApi, deleteNoteApi } from '../services/CreateNoteApi';
+import { createNoteApi, fetchAllNotesApi, updateNoteApi, deleteNoteApi } from '../services/Api';
 import '../styles/Note.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import image from '../assets/download.png';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Note = () => {
@@ -54,6 +56,7 @@ const Note = () => {
         title,
         description,
         category,
+        
       };
 
       await createNoteApi(newNote);
@@ -64,6 +67,9 @@ const Note = () => {
       setDescription('');
       setCategory('');
       handleClose();
+      toast.success('Note created successfully', {
+        position: toast.POSITION.TOP_RIGHT
+      });
     } catch (error) {
       console.error('Error creating note:', error);
     }
@@ -81,7 +87,6 @@ const Note = () => {
   };
 
 
-
   const handleEditSubmit = async () => {
     try {
       const editedNote = {
@@ -89,24 +94,26 @@ const Note = () => {
         description,
         category,
       };
-
-      // Call the API to update the note
+  
       await updateNoteApi(noteToEdit.id, editedNote);
-
+  
       // Update the notes state with the edited note
       setNotes((prevNotes) =>
         prevNotes.map((note) => (note.id === noteToEdit.id ? { ...note, ...editedNote } : note))
       );
-
+  
       // Reset form fields and close the modal
       setTitle('');
       setDescription('');
       setCategory('');
       handleClose();
+      toast.info('Note updated successfully');
     } catch (error) {
       console.error('Error updating note:', error);
+      toast.error('Failed to update note: ' + error.message); // Show error message to user
     }
   };
+  
   const filterNotes = (query) => {
     const filteredNotes = notes.filter((note) => {
       const searchQueryLower = query.toLowerCase();
@@ -132,6 +139,7 @@ const Note = () => {
 
       // Remove the deleted note from the notes state
       setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+      toast.error('Note deleted successfully');
     } catch (error) {
       console.error('Error deleting note:', error);
     }
@@ -163,7 +171,7 @@ const Note = () => {
       <div className="header">
         <h1 className="note-heading">Note Taking App</h1>
         <img src={image} alt="Note Icon" className="note-icon" />
-
+        <ToastContainer />
       </div>
 
       <div className="space">
@@ -212,7 +220,7 @@ const Note = () => {
               />
               <input
                 type="text"
-                placeholder="Enter category"
+                placeholder="Enter folder name"
                 value={category}
                 onChange={(e) => {
                   setCategory(e.target.value);
@@ -269,7 +277,7 @@ const Note = () => {
           </div>
         ))}
       </div>
-      <div class="background-circle"></div>
+      <div className="background-circle"></div>
     </div >
   );
 };
