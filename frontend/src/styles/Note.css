@@ -1,0 +1,266 @@
+/* Note.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://th.bing.com/th/id/R.7afe0c6295ec0523d04dc9399dec3645?rik=DNZr%2fMm%2f1%2bICpA&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fGYYuhT0.jpg&ehk=JH2Y5pSEQkhZSGaN8ufFyZmuF%2blVxUGQDFRaXo7rLas%3d&risl=&pid=ImgRaw&r=0');
+  /* Light blue background color */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: #f2f2f2; */
+}
+
+/* Assuming you have a CSS file (e.g., Note.css) where you style your components */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('../assets/backgroundImage.jpg');
+  /* Hide the original image */
+
+}
+
+.header {
+  color: rgb(17, 15, 15);
+  margin-left: 40%;
+  display: flex;
+  align-items: center;
+  /* Align vertically */
+}
+
+.note-icon {
+  max-width: 50px;
+  /* Adjust the max width as per your requirement */
+  max-height: 60px;
+  /* Adjust the max height as per your requirement */
+  margin-right: 10px;
+  /* Add some margin to separate the image from the heading */
+  padding-bottom: 20px;
+  padding-left: 5px;
+}
+
+
+.note-app {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.note-heading {
+  font-size: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: aliceblue;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.create-button {
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: whitesmoke;
+  margin-left: 10px;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin-left: 40%;
+  margin-top: 15%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* Align items to the end of the flex container */
+  align-items: flex-start;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.headers input {
+  flex: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.modal-close-btn,
+.modal-submit-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#description-box {
+  width: 350px;
+  height: 150px;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.error-message {
+  display: inline-block;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.form-control.error {
+  border: 1px solid red;
+}
+
+.modal-footer {
+  text-align: right;
+  padding-top: 5px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+}
+.modal-close-btn {
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.modal-submit-btn {
+  margin-right: -10px;
+  background-color: black;
+  color: #fff;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 30px;
+  justify-content: center;
+}
+
+.note-card {
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: hwb(220 89% 10% / 0.384);
+  color:black;
+
+}
+
+.card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: black;
+  margin-right: 250px;
+  /* Remove any left margin */
+}
+
+.card-subtitle {
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  font-style: italic;
+  /* background-color: rgba(106, 0, 199, 0.836); */
+  font-weight: bolder;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #353232;
+  color:#fff !important;
+}
+
+.card-text {
+  font-size: 15px;
+  color: #0e0d0dc0;
+  word-wrap: break-word;
+  text-align: justify;
+}
+
+.icon-button {
+  cursor: pointer;
+  margin-left: 110px;
+  color: #0f0f0f;
+}
+
+.icon-button i {
+  font-size: 1.2rem;
+}
+
+#edit-btn {
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #0f0f0f;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-left: 5px;
+  /* Adjust as needed */
+}
+
+.form-control.error {
+  border: 1px solid red;
+}
