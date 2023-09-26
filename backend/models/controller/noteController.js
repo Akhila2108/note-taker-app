@@ -24,74 +24,45 @@ const fetchAllNotes = async (req, res) => {
   }
 };
 
-// Update a note by ID
-// const updateNote = async (req, res) => {
-//   const noteId = req.params.id;
-//   const { title, category, description } = req.body;
+const updateNote = async (req,res) => {
+  const noteId = req.params.id;
+  const { title, category, description } = req.body;
 
-//   try {
-//     const note = await Note.findByPk(noteId);
-
-//     if (!note) {
-//       return res.status(404).json({ message: 'Note not found' });
-//     }
-
-//     await note.update({ title, category, description });
-//     res.status(200).json({ message: 'Note updated successfully', note });
-//   } catch (error) {
-//     console.error('Error updating note:', error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// };
-const updateNoteApi = async (noteId, updatedNote) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/${noteId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedNote),
-    });
+    const note = await Note.findByPk(noteId);
 
-    console.log('API Response:', response);  // Add this line
+    if (note) {
+      await note.update({
+        title,
+        category,
+        description
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to update note');
+      console.log('Note updated in MySQL');
+      console.log(req.body);
+      res.status(200).json({ message: 'Note updated successfully' });
+    } else {
+      console.log('Note not found in MySQL');
+      res.status(404).json({ message: 'Note not found' });
     }
   } catch (error) {
-    throw new Error(`Error updating note: ${error.message}`);
+    console.error('Error updating note:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
-
-// app.put('/api/notes/:id', async (req, res) => {
-//   const noteId = req.params.id;
-//   const { title, category, description } = req.body;
-
-//   try {
-//     const note = await Note.findByPk(noteId);
-
-//     if (!note) {
-//       return res.status(404).json({ message: 'Note not found' });
-//     }
-
-//     await note.update({ title, category, description });
-//     res.status(200).json({ message: 'Note updated successfully', note });
-//   } catch (error) {
-//     console.error('Error updating note:', error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-// Delete a note by ID
-const deleteNote = async (req, res) => {
+const deleteNote = async (req,res) => {
   const noteId = req.params.id;
 
   try {
     const note = await Note.findByPk(noteId);
+    
     if (note) {
       await note.destroy();
+      console.log('Note deleted from MySQL');
       res.status(200).json({ message: 'Note deleted successfully' });
     } else {
+      console.log('Note not found in MySQL');
       res.status(404).json({ message: 'Note not found' });
     }
   } catch (error) {
@@ -100,9 +71,10 @@ const deleteNote = async (req, res) => {
   }
 };
 
+
 module.exports = {
   createNote,
- fetchAllNotes,
+  fetchAllNotes,
   updateNote,
   deleteNote,
 };

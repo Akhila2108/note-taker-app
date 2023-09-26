@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createNoteApi, fetchAllNotesApi, updateNoteApi, deleteNoteApi } from '../services/Api';
 import '../styles/Note.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image from '../assets/download.png';
+import image from '../assets/images/download.png';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,8 +19,7 @@ const Note = () => {
   const [showTitleError, setShowTitleError] = useState(false);
   const [activeSearchField, setActiveSearchField] = useState('');
   const [categoryError, setCategoryError] = useState(false);
-  const [noNotesMessage, setNoNotesMessage] = useState(null);
-  const [filteredNotes, setFilteredNotes] = useState([]);
+
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => {
@@ -70,6 +69,7 @@ const Note = () => {
       toast.success('Note created successfully', {
         position: toast.POSITION.TOP_RIGHT
       });
+      window.location.reload();
     } catch (error) {
       console.error('Error creating note:', error);
     }
@@ -114,22 +114,22 @@ const Note = () => {
     }
   };
   
-  const filterNotes = (query) => {
-    const filteredNotes = notes.filter((note) => {
-      const searchQueryLower = query.toLowerCase();
-      const noteTitleLower = note.title.toLowerCase();
-      return noteTitleLower.includes(searchQueryLower);
-    });
+  // const filterNotes = (query) => {
+  //   const filteredNotes = notes.filter((note) => {
+  //     const searchQueryLower = query.toLowerCase();
+  //     const noteTitleLower = note.title.toLowerCase();
+  //     return noteTitleLower.includes(searchQueryLower);
+  //   });
 
-    setFilteredNotes(filteredNotes);
+  //   setFilteredNotes(filteredNotes);
 
-    // Display "No Notes with such name" message if there are no matching notes
-    if (query && filteredNotes.length === 0) {
-      setNoNotesMessage('No Notes with such name.');
-    } else {
-      setNoNotesMessage(null);
-    }
-  };
+  //   // Display "No Notes with such name" message if there are no matching notes
+  //   if (query && filteredNotes.length === 0) {
+  //     setNoNotesMessage('No Notes with such name.');
+  //   } else {
+  //     setNoNotesMessage(null);
+  //   }
+  // };
 
  
   const handleDeleteNote = async (noteId) => {
@@ -185,7 +185,7 @@ const Note = () => {
           }}
           className="search-input"
         />
-        {noNotesMessage && <div className="no-notes-message">{noNotesMessage}</div>}
+        {/* {noNotesMessage && <div className="no-notes-message">{noNotesMessage}</div>} */}
         {/* Add a new input field for category search */}
         <input
           type="text"

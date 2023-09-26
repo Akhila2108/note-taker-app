@@ -4,7 +4,7 @@ const API_BASE_URL = 'http://localhost:3000/api/notes'; // Replace with your ser
 
 export const createNoteApi = async (noteData) => {
   try {
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch(`${API_BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const createNoteApi = async (noteData) => {
 
 export const fetchAllNotesApi = async () => {
   try {
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch("http://localhost:3000/api/notes", {
       method: 'GET',
     });
 
